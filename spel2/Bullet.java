@@ -14,7 +14,7 @@ public class Bullet extends Sprite {
         p.velocity = dir.multiply(10);
         p.setFriction(0.01f);
         add(p);
-        Collider c = new Collider(true);
+        Collider c = new Collider(false);
         c.setTrigger(true);
         c.setTag("bullet");
         add(c);

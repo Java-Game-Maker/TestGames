@@ -3,6 +3,7 @@ package spel2;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.components.lights.LightManager;
+import com.javagamemaker.javagameengine.msc.Debug;
 import com.javagamemaker.javagameengine.msc.Vector2;
 
 import javax.sound.sampled.*;
@@ -20,7 +21,7 @@ import java.io.InputStream;
 public class Main extends JavaGameEngine {
     public static Player player;
     public static void main(String[] args){
-        //Debug.showWhere=true;
+        Debug.showWhere=false;
         player = new Player();
         size = new Vector2(600,1000);
         player.setPosition(new Vector2(0,-200));

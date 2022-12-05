@@ -29,7 +29,7 @@ public class Player extends Sprite {
     public Player(){
         layer = 200;
     }
-    float coins = 10;
+    float coins = 1000;
     @Override
     public void start() {
         super.start();
@@ -42,7 +42,7 @@ public class Player extends Sprite {
         loadAnimation(new String[]{"/spel2/sprites/cookie.png"});
         loadAnimation(new String[]{"/spel2/sprites/cookie2.png"});
         add(physicsBody);
-        Collider c = new Collider(true);
+        Collider c = new Collider(false);
         c.setTag("player");
         c.setLocalVertices(new Rect(100,90));
         Light l = new Light();
@@ -91,7 +91,7 @@ public class Player extends Sprite {
         if(Input.isMousePressed(Keys.LEFTCLICK) && coins > 0){
             Vector2 startPos = object.getPosition().add(object.getPosition().lookAt(Input.getMousePosition()).multiply(50));
             Main.getSelectedScene().instantiate(new Bullet(startPos,Vector2.getDirection(object.getPosition().lookAtDouble(Input.getMousePosition()))));
-            coins -=10;
+            coins -=5;
         }
         if(Input.isKeyPressed(Keys.ESCAPE)){
             if(paused!=null){

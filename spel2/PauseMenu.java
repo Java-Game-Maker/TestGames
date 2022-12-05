@@ -8,10 +8,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class PauseMenu extends JPanel {
 
@@ -20,8 +17,10 @@ public class PauseMenu extends JPanel {
     Btn reset = new Btn("Restart");
     JSlider volume = new JSlider();
     JLabel volumeValue = new JLabel("0");
+    JCheckBox useLight = new JCheckBox();
 
     public PauseMenu(){
+        JPanel THIS = this;
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         setSize(500,500);
         setLocation(0,0);
@@ -42,8 +41,36 @@ public class PauseMenu extends JPanel {
 
         add(volumePanel);
 
+        useLight.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Main.getSelectedScene().useLight = useLight.isSelected();
+            }
+        });
+        add(useLight);
+        continueBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Main.gameWorld.remove(THIS);
+            }
+        });
+
         add(continueBtn);
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Main.gameWorld.remove(THIS);
+                Main.setSelectedScene(new Level1());
+            }
+        });
         add(reset);
+        quit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Main.gameWorld.remove(THIS);
+                Main.setSelectedScene(new Splashscreen());
+            }
+        });
         add(quit);
 
         PauseMenu pauseMenu = this;

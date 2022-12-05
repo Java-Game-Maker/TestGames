@@ -25,7 +25,7 @@ public class Splashscreen extends Scene {
         setBackground(new Color(50,50,50));
 
        title =new JLabel("Cookie Jumper 2",SwingConstants.CENTER);
-         start = new JButton("Start");
+        start = new JButton("Start");
         title.setFont(new Font("Verdana",Font.BOLD,32));
         title.setLocation(0,300);
         title.setSize(500,100);

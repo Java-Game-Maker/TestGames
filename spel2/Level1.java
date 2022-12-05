@@ -17,7 +17,6 @@ public class Level1 extends Scene {
         Main.player = new Player();
         Main.player.setPosition(new Vector2(0,-200));
         // ui
-        Debug.showWhere = true;
         LightManager.opacity = 0.99f;
         setBackground(new Color(50,50,50));
         JavaGameEngine.masterVolume = 0.1f;
@@ -45,20 +44,18 @@ public class Level1 extends Scene {
 
         add(new Ground(200,new Vector2(-100,-800)){
             @Override
-            public void onCameraLeft() {
-                super.onCameraLeft();
-                if(Math.round(new Random().nextFloat(0,3))==3){
-                    switch (new Random().nextInt(3)){
-                        case 0:
-                            instantiate(new CoinChunk(CoinChunk.box,getPosition().removeX().add(new Vector2(-300,-1500))));
-                            break;
-                        case 1:
-                            instantiate(new CoinChunk(CoinChunk.spiral,getPosition().removeX().add(new Vector2(-300,-1500))));
-                            break;
-                        case 2:
-                            instantiate(new CoinChunk(CoinChunk.pipe,getPosition().removeX().add(new Vector2(-300,-1500))));
-                            break;
-                    }
+            public void respawn() {
+                super.respawn();
+                switch (new Random().nextInt(3)){
+                    case 0:
+                        instantiate(new CoinChunk(CoinChunk.box,getPosition().removeX().add(new Vector2(-300,-1500))));
+                        break;
+                    case 1:
+                        instantiate(new CoinChunk(CoinChunk.spiral,getPosition().removeX().add(new Vector2(-300,-1500))));
+                        break;
+                    case 2:
+                        instantiate(new CoinChunk(CoinChunk.pipe,getPosition().removeX().add(new Vector2(-300,-1500))));
+                        break;
                 }
             }
         });
@@ -85,6 +82,6 @@ public class Level1 extends Scene {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.WHITE);
-        g.drawOval((int) (Input.getMousePositionOnCanvas().getX()-20), (int) (Input.getMousePositionOnCanvas().getY()-20),50,50);
+        g.drawOval((int) (Input.getMousePosition().getX()-20), (int) (Input.getMousePosition().getY()-20),50,50);
     }
 }

@@ -12,7 +12,7 @@ import java.awt.*;
 public class Enemy extends Sprite {
 
     public Enemy(Vector2 pos){
-        Collider c = new Collider(true);
+        Collider c = new Collider(false);
         c.setTrigger(true);
         c.setTag("enemy");
         add(c);
@@ -64,14 +64,17 @@ public class Enemy extends Sprite {
         {
             collisionEvent.getCollider2().getFirstParent().destroy();
             Scene.playSound("/spel2/sound/watersplash.wav",0.1f);
+            animationIndex = 1;
+            setTimer(4);
         }
-        animationIndex = 1;
-        setTimer(4);
     }
     int steps = 0;
     @Override
     public void update() {
         super.update();
+        if(getPosition().getY() > Main.player.getPosition().getY()+500){
+            destroy();
+        }
         if(steps >= 200){
             setInverted(!isInverted());
             dir = dir==Vector2.right?Vector2.left:Vector2.right;

@@ -20,7 +20,7 @@ public class Coin extends Sprite {
         points.add(new AnimationPoint(new Vector2(0,-1),50));
         animation.setSelectedPoints(points);
 
-        Collider c = new Collider(true);
+        Collider c = new Collider(false);
         c.setTrigger(true);
         add(c);
         c.updateVertices();
