@@ -1,4 +1,4 @@
-package TestGames.spacer2;
+package spacer2;
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
 

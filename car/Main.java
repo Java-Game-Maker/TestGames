@@ -1,4 +1,4 @@
-package TestGames.car;
+package car;
 
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;

@@ -1,4 +1,4 @@
-package TestGames.spel1;
+package spel1;
 
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
@@ -9,7 +9,7 @@ import com.javagamemaker.javagameengine.input.Keys;
 import com.javagamemaker.javagameengine.msc.Debug;
 import com.javagamemaker.javagameengine.msc.Random;
 import com.javagamemaker.javagameengine.msc.Vector2;
-import TestGames.spacer2.Turret;
+import spacer2.Turret;
 
 import java.awt.*;
 

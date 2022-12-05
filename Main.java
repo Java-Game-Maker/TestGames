@@ -1,6 +1,3 @@
-
-package TestGames;
-
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
 import com.javagamemaker.javagameengine.components.*;

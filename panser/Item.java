@@ -1,4 +1,4 @@
-package TestGames.panser;
+package panser;
 
 import com.javagamemaker.javagameengine.components.Collider;
 import com.javagamemaker.javagameengine.components.Sprite;

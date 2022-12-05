@@ -1,4 +1,4 @@
-package TestGames.spel1;
+package spel1;
 
 import com.javagamemaker.javagameengine.CollisionEvent;
 import com.javagamemaker.javagameengine.JavaGameEngine;

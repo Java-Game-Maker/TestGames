@@ -1,4 +1,4 @@
-package TestGames.spel1;
+package spel1;
 
 import com.javagamemaker.javagameengine.components.Sprite;
 import com.javagamemaker.javagameengine.msc.Vector2;

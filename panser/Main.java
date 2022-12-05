@@ -1,4 +1,4 @@
-package TestGames.panser;
+package panser;
 
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
@@ -10,6 +10,7 @@ import com.javagamemaker.javagameengine.input.Input;
 import com.javagamemaker.javagameengine.input.Keys;
 import com.javagamemaker.javagameengine.msc.Debug;
 import com.javagamemaker.javagameengine.msc.Vector2;
+import spel1.Explosion;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;

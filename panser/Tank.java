@@ -1,4 +1,4 @@
-package TestGames.panser;
+package panser;
 
 import com.javagamemaker.javagameengine.CollisionEvent;
 import com.javagamemaker.javagameengine.JavaGameEngine;
@@ -9,6 +9,7 @@ import com.javagamemaker.javagameengine.input.Input;
 import com.javagamemaker.javagameengine.input.Keys;
 import com.javagamemaker.javagameengine.msc.Debug;
 import com.javagamemaker.javagameengine.msc.Vector2;
+import spel1.Explosion;
 //import com.javagamemaker.testing.spel1.Explosion;
 
 import java.awt.*;

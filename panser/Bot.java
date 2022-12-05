@@ -1,4 +1,4 @@
-package TestGames.panser;
+package panser;
 
 import com.javagamemaker.javagameengine.CollisionEvent;
 import com.javagamemaker.javagameengine.JavaGameEngine;
