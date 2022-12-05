@@ -14,7 +14,7 @@ public class Coin extends Sprite {
     Animation animation = new Animation();
     public Coin(Vector2 pos){
         setPosition(pos);
-        loadAnimation(new String[]{"/spel2/sprites/milk.png"});
+        animations = Level1.coinPrefab.animations;
         LinkedList<AnimationPoint> points = new LinkedList<>();
         points.add(new AnimationPoint(new Vector2(0,1),0));
         points.add(new AnimationPoint(new Vector2(0,-1),50));

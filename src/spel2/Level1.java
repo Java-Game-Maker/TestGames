@@ -3,6 +3,7 @@ package spel2;
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
 import com.javagamemaker.javagameengine.components.CameraMovement;
+import com.javagamemaker.javagameengine.components.Sprite;
 import com.javagamemaker.javagameengine.components.lights.LightManager;
 import com.javagamemaker.javagameengine.input.Input;
 import com.javagamemaker.javagameengine.msc.Debug;
@@ -11,10 +12,26 @@ import com.javagamemaker.javagameengine.msc.Vector2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Level1 extends Scene {
     public static JLabel coinsLabel = new JLabel("Coins: 0");
+
+    public static Sprite enemyPrefab = new Sprite();
+    public static Sprite coinPrefab = new Sprite();
     public Level1(){
+
+        enemyPrefab.loadAnimation(new String[]{
+                "/spel2/sprites/enemy/pixil-frame-0.png",
+                "/spel2/sprites/enemy/pixil-frame-1.png",
+                "/spel2/sprites/enemy/pixil-frame-2.png",
+                "/spel2/sprites/enemy/pixil-frame-3.png",
+                "/spel2/sprites/enemy/pixil-frame-4.png",
+        });
+
+        coinPrefab.loadAnimation(new String[]{"/spel2/sprites/milk.png"});
+
         Main.player = new Player();
         Main.player.setPosition(new Vector2(0,-200));
         // ui

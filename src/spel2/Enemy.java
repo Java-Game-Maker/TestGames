@@ -16,19 +16,12 @@ public class Enemy extends Sprite {
         c.setTrigger(true);
         c.setTag("enemy");
         add(c);
-
+        animations = Level1.enemyPrefab.animations;
         c.setScale(new Vector2(50,100));
         c.updateVertices();
 
         setPosition(pos.subtract(new Vector2(50,0)));
 
-        loadAnimation(new String[]{
-                "/spel2/sprites/enemy/pixil-frame-0.png",
-                "/spel2/sprites/enemy/pixil-frame-1.png",
-                "/spel2/sprites/enemy/pixil-frame-2.png",
-                "/spel2/sprites/enemy/pixil-frame-3.png",
-                "/spel2/sprites/enemy/pixil-frame-4.png",
-        });
         Rectangle[] die = new Rectangle[12];
         int i = 0;
         for(int y = 0;y<2;y++) {
