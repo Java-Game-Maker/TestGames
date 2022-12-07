@@ -3,6 +3,7 @@ package spel2;
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
 import com.javagamemaker.javagameengine.components.CameraMovement;
+import com.javagamemaker.javagameengine.components.PhysicsBody;
 import com.javagamemaker.javagameengine.components.Sprite;
 import com.javagamemaker.javagameengine.components.lights.LightManager;
 import com.javagamemaker.javagameengine.input.Input;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
 
 public class Level1 extends Scene {
     public static JLabel coinsLabel = new JLabel("Coins: 0");
-
     public static Sprite enemyPrefab = new Sprite();
     public static Sprite coinPrefab = new Sprite();
+    public static Sprite bulletPrefab = new Sprite();
     public Level1(){
 
         enemyPrefab.loadAnimation(new String[]{
@@ -30,16 +31,34 @@ public class Level1 extends Scene {
                 "/spel2/sprites/enemy/pixil-frame-4.png",
         });
 
+        Rectangle[] die = new Rectangle[12];
+        int i = 0;
+        for(int y = 0;y<2;y++) {
+            for(int x = 0;x<6;x++){
+                Rectangle tile = new Rectangle(x * 1600 / 6, y*532 / 2, 1600 / 6, 532 / 2);
+                die[i] = tile;
+                i++;
+            }
+        }
+        enemyPrefab.loadAnimation(die, "/spel2/sprites/watersplash.png");
+
         coinPrefab.loadAnimation(new String[]{"/spel2/sprites/milk.png"});
+        bulletPrefab.loadAnimation(new String[]{"/spel2/sprites/cookie.png"});
+
+
 
         Main.player = new Player();
         Main.player.setPosition(new Vector2(0,-200));
+        useLight = true;
+
         // ui
         LightManager.opacity = 0.99f;
         setBackground(new Color(50,50,50));
-        JavaGameEngine.masterVolume = 0.1f;
+        JavaGameEngine.masterVolume = 1f;
+
         //playSound("/spel2/sound/ambience.wav");
-        //playSound("/spel2/sound/theme.wav");
+        playSound("/spel2/sound/theme.wav");
+
         coinsLabel.setFont(new Font("Verdana",Font.BOLD,32));
         coinsLabel.setForeground(Color.WHITE);
         coinsLabel.setLocation(100,100);
@@ -50,6 +69,7 @@ public class Level1 extends Scene {
     public void start() {
        getCamera().setPosition(new Vector2(getCamera().getPosition().getX()*2,JavaGameEngine.getWindowSize().getY()));
        Ground startGround = new Ground(JavaGameEngine.getWindowSize().getX(),new Vector2(0,0)){
+           // this ground should not respawn
            @Override
            public void respawn() {}
        };
@@ -61,6 +81,7 @@ public class Level1 extends Scene {
        add(new Ground(200,new Vector2(100,-600)));
 
        add(new Ground(200,new Vector2(-100,-800)){
+           // when this ground respawn we add a coin chunk as well
            @Override
            public void respawn() {
                super.respawn();
@@ -77,6 +98,7 @@ public class Level1 extends Scene {
                }
            }
        });
+
        add(new Ground(200,new Vector2(0,-1000)));
        add(new Ground(200,new Vector2(100,-1200)));
        add(new Ground(200,new Vector2(200,-1400)));
@@ -86,18 +108,28 @@ public class Level1 extends Scene {
 
        add(new CoinChunk(CoinChunk.pipe,new Vector2(-300,-1300)));
 
-       add(new Enemy(new Vector2(150,-110)));
        add(Main.player);
-        super.start();
+       super.start();
     }
-
+    // camera speed
+    float speed = 0.3f;
     @Override
     public void update() {
         super.update();
-    }
+        //make the camera move upwards
+        getCamera().translate(Vector2.down.multiply(speed));
+        speed+=0.00001f;
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        //make the camera follow player when player leaves the camera view
+        float h = JavaGameEngine.getWindowSize().getY()/3; // 1/3 of screen height
+        if(Main.player.getPosition().getY() < -getCamera().getPosition().getY()+h){
+            getCamera().getPosition().setY(-Main.player.getPosition().getY()+h);
+        }
+        // if player is bellow camera view
+        if(Main.player.getPosition().getY() > -getCamera().getPosition().getY()+50+JavaGameEngine.getWindowSize().getY() ){
+            Main.player.paused = null;
+            Main.setSelectedScene(new Splashscreen());
+        }
+
     }
 }

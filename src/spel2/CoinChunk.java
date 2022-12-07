@@ -55,9 +55,7 @@ public class CoinChunk extends Component {
         for(Vector2 offset : coinPos){
             Coin c = new Coin(pos.add(offset.multiply(100).add(new Vector2(50,0))));
             Main.getSelectedScene().instantiate(c);
-
         }
     }
-
 
 }

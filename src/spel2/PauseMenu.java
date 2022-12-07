@@ -17,7 +17,7 @@ public class PauseMenu extends JPanel {
     Btn reset = new Btn("Restart");
     JSlider volume = new JSlider();
     JLabel volumeValue = new JLabel("0");
-    JCheckBox useLight = new JCheckBox();
+    JCheckBox useLight = new JCheckBox("Use light");
 
     public PauseMenu(){
         JPanel THIS = this;
@@ -40,7 +40,7 @@ public class PauseMenu extends JPanel {
         volumePanel.add(volumeValue);
 
         add(volumePanel);
-
+        useLight.setSelected(Main.getSelectedScene().useLight);
         useLight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -59,6 +59,7 @@ public class PauseMenu extends JPanel {
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                Main.player.paused = null;
                 Main.gameWorld.remove(THIS);
                 Main.setSelectedScene(new Level1());
             }
@@ -67,6 +68,7 @@ public class PauseMenu extends JPanel {
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                Main.player.paused = null;
                 Main.gameWorld.remove(THIS);
                 Main.setSelectedScene(new Splashscreen());
             }
@@ -80,6 +82,7 @@ public class PauseMenu extends JPanel {
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent mouseEvent) {
+                Main.player.paused = null;
                 Main.gameWorld.remove(pauseMenu);
                 super.mouseExited(mouseEvent);
             }

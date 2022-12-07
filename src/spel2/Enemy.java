@@ -22,31 +22,14 @@ public class Enemy extends Sprite {
 
         setPosition(pos.subtract(new Vector2(50,0)));
 
-        Rectangle[] die = new Rectangle[12];
-        int i = 0;
-        for(int y = 0;y<2;y++) {
-            for(int x = 0;x<6;x++){
-                Rectangle tile = new Rectangle(x * 1600 / 6, y*532 / 2, 1600 / 6, 532 / 2);
-                die[i] = tile;
-                        i++;
-            }
-        }
-        loadAnimation(die, "/spel2/sprites/watersplash.png");
         setTimer(20);
     }
-    int times = 0;
     @Override
     public void animationDone() {
         super.animationDone();
         if(animationIndex == 1){
             destroy();
         }
-        //if(times == 1){
-        //    setInverted(!isInverted());
-        //    times=0;
-        //    dir = dir==Vector2.right?Vector2.left:Vector2.right;
-        //}
-        times++;
     }
     Vector2 dir = Vector2.right;
 
@@ -68,7 +51,7 @@ public class Enemy extends Sprite {
         if(getPosition().getY() > Main.player.getPosition().getY()+500){
             destroy();
         }
-        if(steps >= 200){
+        if(steps >= 300){
             setInverted(!isInverted());
             dir = dir==Vector2.right?Vector2.left:Vector2.right;
             steps=0;

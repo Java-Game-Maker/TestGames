@@ -46,8 +46,9 @@ public class Ship extends Sprite {
     @Override
     public void start() {
         super.start();
+        stars.clear();
         time = 0;
-        health = 100;
+        health = 10000;
         Vector2 maxBox = getPosition().add(JavaGameEngine.getWindowSize().multiply(1));
         Vector2 minBox = getPosition().subtract(JavaGameEngine.getWindowSize().multiply(1));
         Random r = new Random();

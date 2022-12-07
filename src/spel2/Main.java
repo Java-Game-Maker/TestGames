@@ -12,11 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**TODO
- * Add shooting to cookie
  * count height
  * save milk and height
- * pause menu (restart, main menu, toggle music)
  * generate more enemies by height
+ * make floor bigger based on the height
  */
 public class Main extends JavaGameEngine {
     public static Player player;

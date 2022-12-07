@@ -35,7 +35,7 @@ public class Coin extends Sprite {
             if(Main.player.physicsBody.velocity.getY() > -8)
                 Main.player.physicsBody.addForce(Vector2.up.multiply(50));
             Main.player.coins ++;
-            Main.getSelectedScene().playSound(("/spel2/sound/coin.wav"));
+           // Main.getSelectedScene().playSound(("/spel2/sound/coin.wav"));
         }
 
     }

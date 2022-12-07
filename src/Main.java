@@ -1,6 +1,8 @@
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
-import com.javagamemaker.javagameengine.components.*;
+import com.javagamemaker.javagameengine.components.Collider;
+import com.javagamemaker.javagameengine.components.GameObject;
+import com.javagamemaker.javagameengine.components.PhysicsBody;
 import com.javagamemaker.javagameengine.msc.Vector2;
 
 
