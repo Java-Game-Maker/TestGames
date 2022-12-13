@@ -61,9 +61,14 @@ public class Level1 extends Scene {
 
         coinsLabel.setFont(new Font("Verdana",Font.BOLD,32));
         coinsLabel.setForeground(Color.WHITE);
-        coinsLabel.setLocation(100,100);
+        coinsLabel.setLocation(100,210);
         coinsLabel.setSize(1000,100);
         add(coinsLabel);
+        Main.heightLabel.setFont(new Font("Verdana",Font.BOLD,32));
+        Main.heightLabel.setForeground(Color.WHITE);
+        Main.heightLabel.setLocation(100,100);
+        Main.heightLabel.setSize(1000,100);
+        add(Main.heightLabel);
     }
     @Override
     public void start() {
@@ -107,7 +112,7 @@ public class Level1 extends Scene {
        add(new Ground(200,new Vector2(-300,-2000)));
 
        add(new CoinChunk(CoinChunk.pipe,new Vector2(-300,-1300)));
-
+        add(new Enemy(new Vector2(300,10)));
        add(Main.player);
        super.start();
     }

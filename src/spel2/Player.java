@@ -51,9 +51,15 @@ public class Player extends Sprite {
     }
 
     @Override
+    public void updateSecond() {
+        super.updateSecond();
+    }
+
+    @Override
     public void update() {
         super.update();
         Level1.coinsLabel.setText("Coins: "+coins);
+        Main.heightLabel.setText("Score: "+-(int)getPosition().getY()/100);
 
         if(Input.isKeyDown(Keys.A)){
             if(physicsBody.velocity.getX() > -5)
@@ -111,7 +117,7 @@ public class Player extends Sprite {
     protected void onTriggerEnter(CollisionEvent collisionEvent) {
         super.onTriggerEnter(collisionEvent);
 
-        if(collisionEvent.getCollider2().getTag() == "enemy"){
+        if(collisionEvent.getCollider2().getTag() == "enemy" && ((Enemy)collisionEvent.getCollider2().getParent()).animationIndex == 0){
             Main.player.paused = null;
             Main.setSelectedScene(new Splashscreen());
         }

@@ -15,20 +15,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class Splashscreen extends Scene {
 
     JLabel title =new JLabel("Cookie Jumper 2",SwingConstants.CENTER);
     JButton start = new JButton("Start");
+    JLabel score =new JLabel("Score 0",SwingConstants.CENTER);
     public Splashscreen(){
         LightManager.opacity = 0;
         setBackground(new Color(50,50,50));
 
-       title =new JLabel("Cookie Jumper 2",SwingConstants.CENTER);
+        title =new JLabel("Cookie Jumper 2",SwingConstants.CENTER);
         start = new JButton("Start");
         title.setFont(new Font("Verdana",Font.BOLD,32));
         title.setLocation(0,300);
         title.setSize(500,100);
+
+        score.setFont(new Font("Verdana",Font.BOLD,27));
+        score.setLocation(0,300);
+        score.setSize(500,100);
 
         start.setSize(300,50);
         start.setLocation(0,500);
@@ -38,6 +44,9 @@ public class Splashscreen extends Scene {
                 JavaGameEngine.setSelectedScene(new Level1());
             }
         });
+            score.setText(Main.heightLabel.getText());
+            add(score);
+
         add(start);
         add(title);
     }
@@ -51,5 +60,6 @@ public class Splashscreen extends Scene {
         int centerx = (int) (JavaGameEngine.getWindowSize().getX()/2);
         title.setLocation(centerx-250,title.getY());
         start.setLocation(centerx-150,start.getY());
+        score.setLocation(centerx-250,400);
     }
 }

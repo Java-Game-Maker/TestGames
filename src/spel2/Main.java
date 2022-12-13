@@ -19,6 +19,7 @@ import java.io.InputStream;
  */
 public class Main extends JavaGameEngine {
     public static Player player;
+    public static JLabel heightLabel = new JLabel("Score: 0");
     public static void main(String[] args){
         Debug.showWhere=false;
         player = new Player();

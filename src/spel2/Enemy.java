@@ -1,6 +1,7 @@
 package spel2;
 
 import com.javagamemaker.javagameengine.CollisionEvent;
+import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
 import com.javagamemaker.javagameengine.components.Collider;
 import com.javagamemaker.javagameengine.components.Sprite;
@@ -45,18 +46,24 @@ public class Enemy extends Sprite {
         }
     }
     int steps = 0;
+
+    @Override
+    public void updateMili() {
+        super.updateMili();
+        if(steps >= 300){
+            setInverted(!isInverted());
+            dir = dir==Vector2.right?Vector2.left:Vector2.right;
+            steps=0;
+        }
+    }
+
     @Override
     public void update() {
         super.update();
         if(getPosition().getY() > Main.player.getPosition().getY()+500){
             destroy();
         }
-        if(steps >= 300){
-            setInverted(!isInverted());
-            dir = dir==Vector2.right?Vector2.left:Vector2.right;
-            steps=0;
-        }
-        translate(dir.multiply(0.5f));
+        translate(dir.multiply(0.5f* JavaGameEngine.deltaTime));
         steps++;
     }
 }
