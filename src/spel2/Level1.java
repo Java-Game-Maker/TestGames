@@ -3,9 +3,11 @@ package spel2;
 import com.javagamemaker.javagameengine.JavaGameEngine;
 import com.javagamemaker.javagameengine.Scene;
 import com.javagamemaker.javagameengine.components.CameraMovement;
+import com.javagamemaker.javagameengine.components.GameObject;
 import com.javagamemaker.javagameengine.components.PhysicsBody;
 import com.javagamemaker.javagameengine.components.Sprite;
 import com.javagamemaker.javagameengine.components.lights.LightManager;
+import com.javagamemaker.javagameengine.components.shapes.Rect;
 import com.javagamemaker.javagameengine.input.Input;
 import com.javagamemaker.javagameengine.msc.Debug;
 import com.javagamemaker.javagameengine.msc.Random;
@@ -22,6 +24,7 @@ public class Level1 extends Scene {
     public static Sprite coinPrefab = new Sprite();
     public static Sprite bulletPrefab = new Sprite();
     public Level1(){
+
 
         enemyPrefab.loadAnimation(new String[]{
                 "/spel2/sprites/enemy/pixil-frame-0.png",
@@ -49,7 +52,7 @@ public class Level1 extends Scene {
 
         Main.player = new Player();
         Main.player.setPosition(new Vector2(0,-200));
-        useLight = true;
+        useLight = false;
 
         // ui
         LightManager.opacity = 0.99f;
@@ -69,55 +72,63 @@ public class Level1 extends Scene {
         Main.heightLabel.setLocation(100,100);
         Main.heightLabel.setSize(1000,100);
         add(Main.heightLabel);
+
+        Sprite sprite = new Sprite();
+        sprite.loadAnimation(new String[]{"/star.jpg"});
+        sprite.setScale(new Vector2(5000,5000));
+        sprite.setLayer(1);
+        //add(sprite);
+
+
     }
     @Override
     public void start() {
-       getCamera().setPosition(new Vector2(getCamera().getPosition().getX()*2,JavaGameEngine.getWindowSize().getY()));
-       Ground startGround = new Ground(JavaGameEngine.getWindowSize().getX(),new Vector2(0,0)){
+        getCamera().setPosition(new Vector2(getCamera().getPosition().getX(),JavaGameEngine.getWindowSize().getY()/2));
+        Ground startGround = new Ground(JavaGameEngine.getWindowSize().getX(),new Vector2(0,0)){
            // this ground should not respawn
            @Override
            public void respawn() {}
-       };
+        };
 
-       add(startGround);
+        add(startGround);
 
-       add(new Ground(200,new Vector2(-100,-200)));
-       add(new Ground(200,new Vector2(0,-400)));
-       add(new Ground(200,new Vector2(100,-600)));
+        add(new Ground(200,new Vector2(-100,-200)));
+        add(new Ground(200,new Vector2(0,-400)));
+        add(new Ground(200,new Vector2(100,-600)));
 
-       add(new Ground(200,new Vector2(-100,-800)){
-           // when this ground respawn we add a coin chunk as well
-           @Override
-           public void respawn() {
-               super.respawn();
-               switch (new Random().nextInt(3)){
-                   case 0:
-                       instantiate(new CoinChunk(CoinChunk.box,getPosition().removeX().add(new Vector2(-300,-1500))));
-                       break;
-                   case 1:
-                       instantiate(new CoinChunk(CoinChunk.spiral,getPosition().removeX().add(new Vector2(-300,-1500))));
-                       break;
-                   case 2:
-                       instantiate(new CoinChunk(CoinChunk.pipe,getPosition().removeX().add(new Vector2(-300,-1500))));
-                       break;
-               }
-           }
-       });
+        add(new Ground(200,new Vector2(-100,-800)){
+            // when this ground respawn we add a coin chunk as well
+            @Override
+            public void respawn() {
+                super.respawn();
+                switch (new Random().nextInt(3)){
+                    case 0:
+                        instantiate(new CoinChunk(CoinChunk.box,getPosition().removeX().add(new Vector2(-300,-1500))));
+                        break;
+                    case 1:
+                        instantiate(new CoinChunk(CoinChunk.spiral,getPosition().removeX().add(new Vector2(-300,-1500))));
+                        break;
+                    case 2:
+                        instantiate(new CoinChunk(CoinChunk.pipe,getPosition().removeX().add(new Vector2(-300,-1500))));
+                        break;
+                }
+            }
+        });
 
-       add(new Ground(200,new Vector2(0,-1000)));
-       add(new Ground(200,new Vector2(100,-1200)));
-       add(new Ground(200,new Vector2(200,-1400)));
-       add(new Ground(200,new Vector2(-200,-1600)));
-       add(new Ground(200,new Vector2(0,-1800)));
-       add(new Ground(200,new Vector2(-300,-2000)));
+        add(new Ground(200,new Vector2(0,-1000)));
+        add(new Ground(200,new Vector2(100,-1200)));
+        add(new Ground(200,new Vector2(200,-1400)));
+        add(new Ground(200,new Vector2(-200,-1600)));
+        add(new Ground(200,new Vector2(0,-1800)));
+        add(new Ground(200,new Vector2(-300,-2000)));
 
-       add(new CoinChunk(CoinChunk.pipe,new Vector2(-300,-1300)));
+        add(new CoinChunk(CoinChunk.pipe,new Vector2(-300,-1300)));
         add(new Enemy(new Vector2(300,10)));
-       add(Main.player);
-       super.start();
+        add(Main.player);
+        super.start();
     }
     // camera speed
-    float speed = 0.3f;
+    float speed = 0.03f;
     @Override
     public void update() {
         super.update();
@@ -132,8 +143,8 @@ public class Level1 extends Scene {
         }
         // if player is bellow camera view
         if(Main.player.getPosition().getY() > -getCamera().getPosition().getY()+50+JavaGameEngine.getWindowSize().getY() ){
-            Main.player.paused = null;
-            Main.setSelectedScene(new Splashscreen());
+            //Main.player.paused = null;
+            //Main.setSelectedScene(new Splashscreen());
         }
 
     }

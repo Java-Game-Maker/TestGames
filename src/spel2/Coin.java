@@ -5,6 +5,7 @@ import com.javagamemaker.javagameengine.components.Animation.Animation;
 import com.javagamemaker.javagameengine.components.Animation.AnimationPoint;
 import com.javagamemaker.javagameengine.components.Collider;
 import com.javagamemaker.javagameengine.components.Sprite;
+import com.javagamemaker.javagameengine.msc.Debug;
 import com.javagamemaker.javagameengine.msc.Vector2;
 
 import java.util.LinkedList;
@@ -14,13 +15,15 @@ public class Coin extends Sprite {
     Animation animation = new Animation();
     public Coin(Vector2 pos){
         setPosition(pos);
+
         animations = Level1.coinPrefab.animations;
         LinkedList<AnimationPoint> points = new LinkedList<>();
         points.add(new AnimationPoint(new Vector2(0,1),0));
         points.add(new AnimationPoint(new Vector2(0,-1),50));
         animation.setSelectedPoints(points);
 
-        Collider c = new Collider(false);
+
+        Collider c = new Collider(true);
         c.setTrigger(true);
         add(c);
         c.updateVertices();

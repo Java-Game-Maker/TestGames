@@ -12,6 +12,7 @@ public class Ground extends Sprite {
         loadAnimation(new String[]{"/spel2/sprites/groundtileStone.png"});
         setScale(new Vector2(width,50));
         setPosition(pos);
+
     }
     public boolean generateEnemy(){
        if(new Random().nextInt(5)==1){

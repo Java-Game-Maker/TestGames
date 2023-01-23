@@ -25,7 +25,7 @@ public class Player extends Sprite {
 
     GameObject object = new GameObject();
     public Player(){
-        layer = 200; //above every one
+        layer = 100; //above every one
     }
     float coins = 10;
     PauseMenu paused;
@@ -40,7 +40,7 @@ public class Player extends Sprite {
         loadAnimation(new String[]{"/spel2/sprites/cookie.png"});
         loadAnimation(new String[]{"/spel2/sprites/cookie2.png"});
         add(physicsBody);
-        Collider c = new Collider(false);
+        Collider c = new Collider(true);
         c.setTag("player");
         c.setLocalVertices(new Circle(50,50));
         Light l = new Light();
@@ -118,8 +118,8 @@ public class Player extends Sprite {
         super.onTriggerEnter(collisionEvent);
 
         if(collisionEvent.getCollider2().getTag() == "enemy" && ((Enemy)collisionEvent.getCollider2().getParent()).animationIndex == 0){
-            Main.player.paused = null;
-            Main.setSelectedScene(new Splashscreen());
+            //Main.player.paused = null;
+            //Main.setSelectedScene(new Splashscreen());
         }
     }
 
