@@ -21,14 +21,10 @@ public class Main extends JavaGameEngine {
 
         Sprite background = new Sprite();
         background.loadAnimation(new String[]{"/mountains-background-game-vector.jpg"});
-        background.setScale(new Vector2(1920,900));
-        background.setPosition(new Vector2(-100, -250,0));
+        background.setScale(new Vector2(1920*2,900));
+        background.setPosition(new Vector2(-100, -250,-80));
         background.setLayer(0);
         scene.add(background);
-
-        Collider c = new Collider(new Rect(1920,200));
-        c.setPosition(new Vector2(0,415,0));
-        c.setVisible(true);
 
         scene.add(new Tree(new Vector2(0  , -160)));
         scene.add(new Tree(new Vector2(200, -160)));
@@ -36,8 +32,8 @@ public class Main extends JavaGameEngine {
         scene.add(new Tree(new Vector2(900, -160)));
 
         GameObject floor = new GameObject();
-        floor.setPosition(new Vector2(0,315, 50));
-        floor.setScale(new Vector2(1920,500));
+        floor.setPosition(new Vector2(0,315, 0));
+        floor.setScale(new Vector2(10920,500));
         Collider floorCollider = new Collider(floor.getLocalVertices());
         floorCollider.setVisible(true);
         floor.add(floorCollider);
@@ -54,7 +50,7 @@ public class Main extends JavaGameEngine {
 
         public Tree(Vector2 pos) {
             setPosition(pos);
-            getPosition().setZ(50);
+            getPosition().setZ(-5);
             layer = 100;
             setScale(new Vector2(300,500));
             loadAnimation(new String[]{"/tree-forest-free-png.png"});
@@ -83,7 +79,7 @@ public class Main extends JavaGameEngine {
             c.setParentOffset(new Vector2(0,-30));
             add(c);
             add(new PhysicsBody(true));
-            setPosition(new Vector2(0,0,100));
+            setPosition(new Vector2(0,0,0));
         }
 
         @Override
